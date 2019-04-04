@@ -25,7 +25,7 @@ touch ${VVV_PATH_TO_SITE}/log/nginx-access.log
 # Install and configure the latest stable version of WordPress
 if [[ ! -f "${VVV_PATH_TO_SITE}/public_html/wp/wp-load.php" ]]; then
     echo "Downloading WordPress..."
-	noroot wp core download --version="${WP_VERSION}"
+	noroot wp core download --version="${WP_VERSION}" --path="${VVV_PATH_TO_SITE}/public_html/wp"
 fi
 
 if [[ ! -f "${VVV_PATH_TO_SITE}/public_html/wp/wp-config.php" ]]; then
@@ -51,7 +51,7 @@ if ! $(noroot wp core is-installed); then
 else
   echo "Updating WordPress Stable..."
   cd ${VVV_PATH_TO_SITE}/public_html/wp
-  noroot wp core update --version="${WP_VERSION}"
+  noroot wp core update --version="${WP_VERSION}" --path="${VVV_PATH_TO_SITE}/public_html/wp"
 fi
 
 cp -f "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf.tmpl" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
